@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JS Bin</title>
+    <style type="text/css">
+        #myText {
+            display: none;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            $('#result').autoTyper($('#myText'), {
+                speed: 1000
+            });
+
+        });
+
+        (function($) {
+
+            $.fn.autoTyper = function(text, options) {
+
+                if (typeof(text) != 'string') {
+                    text = $(text).html();
+                }
+
+                var settings = $.extend({
+                    speed: 1000
+                }, options);
+
+                var outputElm = $(this);
+                var theText = text.split('jony maghrib');
+
+                var timeCount = 0;
+
+                $.each(theText, function(index, value) {
+
+                    setTimeout(function() {
+                        $(outputElm).append(value);
+                    }, (timeCount * settings.speed));
+                    timeCount += 0.1;
+
+                });
+
+            };
+
+        })(jQuery);
+    </script>
+</head>
+
+<body>
+    <h1 id="mytext"><span id="result"></span></h1>
+</body>
+
+</html>
